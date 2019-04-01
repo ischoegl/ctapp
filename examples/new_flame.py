@@ -19,7 +19,7 @@ refine_grid = 1  # 1 to enable refinement, 0 to disable
 gas = ct.Solution('h2o2.xml')
 gas.TPX = tburner, p, reactants
 
-f = ct.NewFlame(gas, initial_grid)
+f = ct.ClonedFlame(gas, initial_grid)
 
 f.burner.T = tburner
 f.burner.X = reactants
