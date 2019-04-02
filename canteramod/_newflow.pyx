@@ -2,7 +2,7 @@
 # distutils: language = c++
 
 #import csv
-from cantera import interrupts
+#from cantera import interrupts
 # cimport cantera
 from cantera cimport CxxStFlow
 from cantera cimport _SolutionBase
@@ -12,6 +12,8 @@ from cantera cimport getIdealGasPhase
 # implementation file
 
 from cantera import *
+
+__all__ = ['ClonedFlow', 'ClonedFlame']
 
 cdef class ClonedFlow(_FlowBase):
     """

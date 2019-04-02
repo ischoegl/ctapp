@@ -2,7 +2,8 @@
 A burner-stabilized lean premixed hydrogen-oxygen flame at low pressure.
 """
 
-import canteramod as ct
+import cantera as ct
+import canteramod as cm
 
 p = 0.05 * ct.one_atm
 tburner = 373.0
@@ -19,7 +20,7 @@ refine_grid = 1  # 1 to enable refinement, 0 to disable
 gas = ct.Solution('h2o2.xml')
 gas.TPX = tburner, p, reactants
 
-f = ct.ClonedFlame(gas, initial_grid)
+f = cm.ClonedFlame(gas, initial_grid)
 
 f.burner.T = tburner
 f.burner.X = reactants
