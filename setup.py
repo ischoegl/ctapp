@@ -9,22 +9,21 @@ __CANTERA_OBJ = glob.glob(__CANTERA_OBJ)[0]
 
 extensions = [
     Extension(
-        "canteramod._newflow",
-        ["canteramod/_newflow.pyx"],
+        "ctapp._ctapp",
+        ["canteramod/_ctapp.pyx"],
         extra_objects=[__CANTERA_OBJ],
     ),
 ]
 
 setup(
-    name="canteramod",
+    name="ctapp",
     description='Example for compilation of custom cython code against stock cantera',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
-        'License :: Other/Proprietary License',
+        'License :: MIT',
         'Programming Language :: Python :: 3',
-        'Private :: Do not Upload',
     ],
     install_requires=['cantera'],
     packages=find_packages(),
