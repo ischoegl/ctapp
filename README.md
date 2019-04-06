@@ -1,6 +1,6 @@
 # cantera-app
 
-This is a simple example for a cantera derived application that adds new C++ and cython cdef'd classes (illustrated using clones of IdealGasFlow/BurnerFlame classes defined in cython, and a clone of IdealGasConstPressureReactor defined in C++).
+This is a simple example for a cantera derived application that adds new C++ and cython cdef'd classes (illustrated using a clone of IdealGasFlow defined in cython, and a clone of IdealGasConstPressureReactor defined in C++).
 
 Note: this example requires a *complete* cantera installation (including headers), which typically requires compilation from source. The code was tested for the `cantera 2.4` branch on ubuntu 18.04.
 
