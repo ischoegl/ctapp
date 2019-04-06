@@ -18,12 +18,13 @@ Install package
 # pip install -e .
 ```
 
-Open python console and verify that the package loads without errors
+Open python console, verify that the package loads without errors, and that newly defined objects are present.
 
 ```
 $ python
 ...
 >>> import ctapp
+>>> dir(ctapp)
 ```
 
 Check that everything runs (the shell script `get_examples.sh` downloads and modifies stock cantera examples)
