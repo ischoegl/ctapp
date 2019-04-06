@@ -1,9 +1,9 @@
-# cantera-mod
+# cantera-app
 
-This is a simple modification that adds a new version of a cython cdef'd class 
-to cantera (adding clones of IdealGasFlow/BurnerFlame classes defined in cython).
+This is a simple modification that adds new C++ and cython cdef'd classes 
+to cantera (adding clones of IdealGasFlow/BurnerFlame classes defined in cython, and a clone of IdealGasConstPressureReactor defined in C++).
 
-Note: this example requires a *complete* cantera installation (including headers), which typically requires compilation from source. The code was tested for the `cantera 2.4` branch.
+Note: this example requires a *complete* cantera installation (including headers), which typically requires compilation from source. The code was tested for the `cantera 2.4` branch on ubuntu 18.04.
 
 ## Usage
 
@@ -19,17 +19,19 @@ Install package
 # pip install -e .
 ```
 
-Open python console and verify that package loads without errors
+Open python console and verify that the package loads without errors
 
 ```
 $ python
 ...
->>> import canteramod as ct
+>>> import ctapp
 ```
 
-Check that everything runs (`new_flame.py` is a version of the  cantera example `burner_flame.py` that uses the cloned object `ClonedFlame`)
+Check that everything runs (the shell script `get_examples.sh` downloads and modifies stock cantera examples)
 
 ```
 $ cd examples
-$ python new_flame.py
+$ sh get_examples.sh
+$ python cloned_flame.py
+$ python cloned_reactor.py
 ```

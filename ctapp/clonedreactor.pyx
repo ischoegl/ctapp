@@ -6,9 +6,9 @@ cdef __register():
 
 __register()
 
-cdef class ClonedReactor(ct.IdealGasPressureReactor):
+cdef class ClonedReactor(ct.IdealGasConstPressureReactor):
     """
-    a reactor cloned from IdealGasPressureReactor
+    a reactor cloned from IdealGasConstPressureReactor
     rest is done by inheritance
     """
     reactor_type = "ClonedReactor"

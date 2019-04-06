@@ -7,6 +7,7 @@
 #define CT_CLONEDREACTOR_H
 
 #include "cantera/zeroD/IdealGasConstPressureReactor.h"
+#include "cantera/zeroD/ReactorFactory.h"
 
 using namespace Cantera;
 

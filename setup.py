@@ -7,17 +7,22 @@ import glob
 __CANTERA_OBJ = pkg_resources.resource_filename('cantera', '_cantera.*so')
 __CANTERA_OBJ = glob.glob(__CANTERA_OBJ)[0]
 
+__CANTERA_DEP = pkg_resources.resource_filename('cantera', 'interrupts.py')
+
 extensions = [
     Extension(
         "ctapp._ctapp",
-        ["canteramod/_ctapp.pyx"],
+        ["ctapp/_ctapp.pyx"],
+        language='c++',
         extra_objects=[__CANTERA_OBJ],
+        depends=[__CANTERA_DEP],
     ),
 ]
 
 setup(
     name="ctapp",
-    description='Example for compilation of custom cython code against stock cantera',
+    description=
+    'Example for compilation of custom classes against stock cantera',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
