@@ -1,4 +1,4 @@
-# cantera-app
+# ctapp
 
 This is a simple example for a cantera derived application that adds new C++ and cython cdef'd classes (illustrated using a clone of IdealGasFlow defined in cython, and a clone of IdealGasConstPressureReactor defined in C++).
 
