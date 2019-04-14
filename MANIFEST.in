@@ -1,1 +1,11 @@
-include canteramod/*.*
+include README.md
+include MANIFEST.in
+include LICENSE
+include setup.py
+
+include ctapp/*.py
+include ctapp/*.pxd
+include ctapp/*.pyx
+include ctapp/*.h
+
+include examples/*.sh
