@@ -6,7 +6,7 @@ cimport cantera as ct
 
 from cantera import interrupts
 
-__all__ = ['ClonedFlow', 'ClonedReactor']
+__all__ = ['ClonedFlow', 'ClonedReactor', 'NewFlow']
 
 include "clonedflow.pyx"
 include "clonedreactor.pyx"

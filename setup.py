@@ -17,7 +17,8 @@ def readme():
 extensions = [
     Extension(
         "ctapp._ctapp",
-        ["ctapp/_ctapp.pyx"],
+        ["ctapp/_ctapp.pyx",
+         "ctapp/NewFlow.cpp"],
         language='c++',
         extra_objects=[__CANTERA_OBJ],
         depends=[__CANTERA_DEP],
@@ -40,7 +41,6 @@ setup(
     author='Ingmar Schoegl',
     author_email='ischoegl@lsu.edu',
     license='MIT',
-    install_requires=['cantera'],
     packages=find_packages(),
     install_requires=['cantera>=2.4.0'],
     ext_modules=cythonize(extensions))
