@@ -13,7 +13,7 @@ cdef class ClonedFlow(ct._FlowBase):
 # new flow class defined in C++
 cdef extern from "NewFlow.h":
     cdef cppclass CxxNewFlow "CanteraApp::NewFlow":
-        CxxNewFlow(ct.CxxIdealGasPhase * , int, int)
+        CxxNewFlow(ct.CxxIdealGasPhase * , int, int, int)
 
 # cython portion
 cdef class NewFlow(ct._FlowBase):

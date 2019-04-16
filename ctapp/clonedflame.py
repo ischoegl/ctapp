@@ -35,7 +35,7 @@ class NewFlame(ct.BurnerFlame):
     """An (almost exact) clone of BurnerFlame, using NewFlow (C++ defined)."""
     __slots__ = ('burner', 'flame', 'outlet')
 
-    def __init__(self, gas, grid=None, width=None):
+    def __init__(self, gas, nextra=10, grid=None, width=None):
         """
         see BurnerFlame
         """
