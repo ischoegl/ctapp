@@ -42,7 +42,7 @@ class NewFlame(ct.BurnerFlame):
         self.burner = ct.Inlet1D(name='burner', phase=gas)
         self.outlet = ct.Outlet1D(name='outlet', phase=gas)
         if not hasattr(self, 'flame'):
-            self.flame = NewFlow(gas, name='flame')
+            self.flame = NewFlow(gas, name='flame', nextra=nextra)
             self.flame.set_axisymmetric_flow()
 
         if width is not None:

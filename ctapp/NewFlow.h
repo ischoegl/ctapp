@@ -34,6 +34,9 @@ public:
   virtual void evalResidual(double *x, double *rsd, int *diag, double rdt,
                             size_t jmin, size_t jmax);
 
+  virtual std::string componentName(size_t n) const;
+  virtual size_t componentIndex(const std::string &name) const;
+
 protected:
   size_t m_nextra;
 };
