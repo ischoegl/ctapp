@@ -1,27 +1,27 @@
 # ctapp
 
-This is a simple example for a cantera derived application that adds new C++ and cython cdef'd classes (illustrated using a clone of IdealGasFlow defined in cython, and a clone of IdealGasConstPressureReactor defined in C++).
+This is a simple example for a cantera derived application that adds new C++ and cython cdef'd classes (illustrated using clones of IdealGasFlow and IdealGasConstPressureReactor defined in C++).
 
 __Notes:__ this example requires a *complete* cantera installation (including headers), which typically requires compilation from source. 
 
- * Objects for `ClonedFlow`, `ClonedReactor` work with stock cantera, and were tested for the `v2.4` branch and the current development branch (`v2.5.0ra2`) on ubuntu 18.04.
- * The object `NewFlow` adds equations, and requires a patched version of `StFlow.h` / `boundaries1D.cpp`.
+ * Objects for `ClonedFlow`, `ClonedReactor` work with stock cantera, and were tested for the `v2.4` branch on ubuntu 18.04.
+ * The object `NewFlow` adds equations, and requires a patched version of `StFlow.h` (now included in the current development branch, i.e. `v2.5.0a2`).
 
 ## Usage
 
-Compile cython extension
+Compile the cython extension
 
 ```
 # python setup.py build_ext --inplace
 ```
 
-Install package
+Install the package
 
 ```
 # pip install -e .
 ```
 
-Open python console, verify that the package loads without errors, and that newly defined objects are present.
+Open a python console, verify that the package loads without errors, and that newly defined objects are present.
 
 ```
 $ python
