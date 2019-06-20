@@ -29,15 +29,15 @@ public:
   NewFlow(IdealGasPhase *ph = 0, size_t nsp = 1, size_t nextra = 0,
           size_t points = 1);
 
+  virtual std::string componentName(size_t n) const;
+  virtual size_t componentIndex(const std::string &name) const;
+
+protected:
   //! Evaluate the residual function. This function is called in eval
   //! after updateProperties is called.
   virtual void evalResidual(double *x, double *rsd, int *diag, double rdt,
                             size_t jmin, size_t jmax);
 
-  virtual std::string componentName(size_t n) const;
-  virtual size_t componentIndex(const std::string &name) const;
-
-protected:
   size_t m_nextra;
 };
 

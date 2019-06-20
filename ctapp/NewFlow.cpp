@@ -42,21 +42,21 @@ void NewFlow::evalResidual(double *x, double *rsd, int *diag, double rdt,
         rsd[index(n, j)] = 1. - x[index(n, j)];
       } else if (j == m_points - 1) {
         // right boundary: zero gradient
-        doublereal dz = z(j) - z(j - 1);
-	doublereal df = x[index(n, j)] - x[index(n, j - 1)];
+        double dz = z(j) - z(j - 1);
+	double df = x[index(n, j)] - x[index(n, j - 1)];
         rsd[index(n, j)] = df / dz;
       } else {
         // interior point: simple exponential decay
-        doublereal dz = z(j) - z(j - 1);
-	doublereal df = x[index(n, j)] - x[index(n, j - 1)];
+        double dz = z(j) - z(j - 1);
+	double df = x[index(n, j)] - x[index(n, j - 1)];
         rsd[index(n, j)] = -x[index(n, j)] - 1./double(n) * df / dz;
-        diag[index(n, j)] = 1;
+        diag[index(n, j)] = false;
       }
     }
   }
 }
 
-std::string NewFlow::componentName(size_t n) const {
+string NewFlow::componentName(size_t n) const {
   if (n < c_offset_Y + m_nsp) {
     return StFlow::componentName(n);
   } else if (n < m_nv) {
@@ -66,7 +66,7 @@ std::string NewFlow::componentName(size_t n) const {
   }
 }
 
-size_t NewFlow::componentIndex(const std::string &name) const {
+size_t NewFlow::componentIndex(const string &name) const {
   size_t idx;
   idx = StFlow::componentIndex(name);
   if (idx == npos) {
