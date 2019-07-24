@@ -1,27 +1,62 @@
 # ctapp
 
-This is a simple example for a cantera derived application that adds new C++ and cython cdef'd classes (illustrated using clones of IdealGasFlow and IdealGasConstPressureReactor defined in C++).
+This is a simple example for a cantera derived application that is compiled
+against cantera source code.
 
-__Notes:__ this example requires a *complete* cantera installation (including headers), which typically requires compilation from source. 
+This example adds new C++ and cython cdef'd classes (illustrated using clones of
+`IdealGasFlow` and `IdealGasConstPressureReactor` defined in C++).
 
- * Objects for `ClonedFlow`, `ClonedReactor` work with stock cantera, and were tested for the `v2.4` branch on ubuntu 18.04.
- * The object `NewFlow` adds equations, and requires a patched version of `StFlow.h` (now included in the current development branch, i.e. `v2.5.0a2`).
+__Notes:__
+ * the package depends on `cantera` and `libcantera-devel`, both of which
+are now available as conda packages.
+ * at the moment, the package requires a Linux installation
 
-## Usage
+## Installation
 
-Compile the cython extension
+### Set up a conda environment
+
+Create and activate a conda environment
+
+```
+$ conda create -n cantera-dev scons numpy cython ruamel_yaml libboost git ipython
+$ conda activate cantera-dev
+```
+
+Install cantera and libcantera-devel
+
+```
+$ conda install -c cantera/label/dev cantera
+$ conda install -c cantera/label/dev libcantera-devel
+```
+
+### Install ctapp
+
+Clone the repository
+
+```
+$ git clone https://github.com/ischoegl/ctapp.git
+$ cd ctapp
+```
+
+Optional step: to shows compilation progress prior to installation, run
 
 ```
 # python setup.py build_ext --inplace
 ```
 
-Install the package
+Run the installer for the local project path
 
 ```
 # pip install -e .
 ```
 
-Open a python console, verify that the package loads without errors, and that newly defined objects are present.
+Note: the `-e` (`--editable`) flag creates a version that is linked and will
+automatically update.
+
+## Usage
+
+Open a python console, verify that the package loads without errors, and that
+newly defined objects are present.
 
 ```
 $ python
@@ -30,7 +65,8 @@ $ python
 >>> dir(ctapp)
 ```
 
-Check that everything runs (the shell script `get_examples.sh` downloads and modifies stock cantera examples)
+Check that everything runs (the shell script `get_examples.sh` downloads and
+modifies stock cantera examples)
 
 ```
 $ cd examples
