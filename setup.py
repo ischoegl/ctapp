@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 from setuptools import setup, Extension, find_packages
 from Cython.Build import cythonize
+from Cython.Compiler import Options
+
+Options.language_level = 3
+
 import pkg_resources
 import glob
 
