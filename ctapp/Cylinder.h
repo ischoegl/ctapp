@@ -7,10 +7,14 @@
 #define CT_CYLINDER_H
 
 #include "cantera/zeroD/ReactorBase.h"
-#include "cantera/zeroD/Piston.h"
+#include "Piston.h"
 
-namespace Cantera
-{
+using namespace Cantera;
+
+namespace CanteraApp {
+
+const int CylinderType = 7;
+
 
 /**
  * Class Cylinder is derived from class IdealGasReactor and adds utility functions

@@ -8,23 +8,29 @@
 
 #include "cantera/zeroD/Wall.h"
 
-namespace Cantera
-{
+using namespace Cantera;
+
+namespace CanteraApp {
 
 class Cylinder;
+
+const int FloatingPistonType = 2;
+const int DrivenPistonType = 3;
+const int ReciprocatingPistonType = 4;
+
 
 //! Represents a wall between between two ReactorBase objects.
 /*!
  * PistonBase is a base class that defines additional functions.
  */
-class PistonBase : public WallBase
+class PistonBase : public Wall
 {
 public:
 
-    PistonBase() : WallBase(), m_zmin(1.e-14), m_zmax(1e14) {}
+    PistonBase() : Wall(), m_zmin(1.e-14), m_zmax(1e14) {}
 
     virtual bool ready() {
-        return ( WallBase::ready() && check() );
+        return ( Wall::ready() && check() );
     }
 
     //! check whether reactors are installed correctly

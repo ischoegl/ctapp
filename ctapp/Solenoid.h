@@ -6,13 +6,16 @@
 #ifndef CT_SOLENOID_H
 #define CT_SOLENOID_H
 
-#include "FlowDevice.h"
-#include "cantera/zeroD/WallClasses.h"
+#include "cantera/zeroD/FlowDevice.h"
+#include "cantera/zeroD/Wall.h"
 
-namespace Cantera
-{
+using namespace Cantera;
 
-class WallBase;
+namespace CanteraApp {
+
+const int SolenoidType = 4;
+
+class Cantera::Wall;
 
 //! Supply a mass flow rate that is a function of the pressure drop across the
 //! valve.
@@ -47,7 +50,7 @@ public:
     virtual double getAddedMass() const { return m_mass; }
 
     //! Set object solenoid uses for synchronization
-    virtual void setMaster(WallBase* master);
+    virtual void setMaster(Wall* master);
 
     //! Specify whether solenoid is synchronized
     virtual bool hasCycle() const {  return m_cycle>0.; }
@@ -87,7 +90,7 @@ protected:
     double calcOpenDuration();
 
     double m_open, m_close, m_duration, m_mass, m_cycle;
-    WallBase* m_master;
+    Wall* m_master;
 };
 
 }

@@ -3,13 +3,14 @@
 // This file is part of Cantera. See License.txt in the top-level directory or
 // at https://cantera.org/license.txt for license and copyright information.
 
-#include "cantera/zeroD/Piston.h"
-#include "cantera/zeroD/Solenoid.h"
+#include "Piston.h"
+#include "Solenoid.h"
 
-namespace Cantera
-{
+using namespace Cantera;
 
-void Solenoid::setMaster(WallBase* master)
+namespace CanteraApp {
+
+void Solenoid::setMaster(Wall* master)
 {
     m_master = master;
     if ( (master) && (master->type() == ReciprocatingPistonType) ) {

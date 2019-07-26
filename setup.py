@@ -29,11 +29,12 @@ def readme():
         return f.read()
 
 
+cpp_files = glob.glob('ctapp/[A-Z]*.cpp')
+    
 extensions = [
     Extension(
         "ctapp._ctapp",
-        ["ctapp/_ctapp.pyx",
-         "ctapp/NewFlow.cpp"],
+        ["ctapp/_ctapp.pyx"] + cpp_files,
         include_dirs=[np.get_include(), __INCLUDE],
         extra_objects=[__CANTERA_OBJ],
         depends=[__CANTERA_DEP],

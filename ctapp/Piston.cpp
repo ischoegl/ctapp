@@ -3,11 +3,12 @@
 // This file is part of Cantera. See License.txt in the top-level directory or
 // at https://cantera.org/license.txt for license and copyright information.
 
-#include "cantera/zeroD/Piston.h"
-#include "cantera/zeroD/ReactorClasses.h"
+#include "Piston.h"
+#include "cantera/zeroD/Reactor.h"
 
-namespace Cantera
-{
+using namespace Cantera;
+
+namespace CanteraApp {
 
 double PistonBase::position()
 {
