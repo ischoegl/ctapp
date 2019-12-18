@@ -15,6 +15,8 @@ are now available as conda packages.
 
 ### Set up a conda environment
 
+> Note: headers in `libcantera-devel` may not install correctly on windows. 
+
 Create and activate a conda environment
 
 ```
