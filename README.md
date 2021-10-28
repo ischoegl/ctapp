@@ -9,13 +9,14 @@ This example adds new C++ and cython cdef'd classes (illustrated using clones of
 __Notes:__
  * the package depends on `cantera` and `libcantera-devel`, both of which
 are now available as conda packages.
+ * the current version assumes Cantera >= 2.6.0a1
  * at the moment, the package requires a Linux installation
 
 ## Installation
 
 ### Set up a conda environment
 
-> Note: headers in `libcantera-devel` may not install correctly on windows. 
+> Note: headers in `libcantera-devel` may not install correctly on windows.
 
 Create and activate a conda environment
 
@@ -76,3 +77,7 @@ $ sh get_examples.sh
 $ python cloned_flame.py
 $ python cloned_reactor.py
 ```
+
+> *Note: On recent conda versions, there may be a mismatch of `libstdc++` between
+> the conda environment and the system `g++` (see
+> [workaround](https://github.com/stan-dev/pystan/issues/294#issuecomment-878292636))

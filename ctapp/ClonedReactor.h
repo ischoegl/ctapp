@@ -3,6 +3,8 @@
 // This file is part of the add-on package ctapp.
 // See License.txt in the top-level directory
 
+// the code below builds on StFlow.cpp (Cantera 2.6.1)
+
 #ifndef CT_CLONEDREACTOR_H
 #define CT_CLONEDREACTOR_H
 
@@ -13,16 +15,14 @@ using namespace Cantera;
 
 namespace CanteraApp {
 
-const int ClonedReactorType = 7;
-
 class ClonedReactor : public IdealGasConstPressureReactor {
-  virtual int type() const { return ClonedReactorType; }
-  // inherit everything else
+    virtual std::string type() const { return "ClonedReactor"; }
+    // inherit everything else
 };
 
 inline void registerClonedReactor() {
-  ReactorFactory::factory()->reg("ClonedReactor",
-                                 []() { return new ClonedReactor(); });
+      ReactorFactory::factory()->reg("ClonedReactor",
+                                     []() { return new ClonedReactor(); });
 }
 
 } // namespace CanteraApp

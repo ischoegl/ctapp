@@ -37,6 +37,7 @@ extensions = [
         include_dirs=[np.get_include(), __INCLUDE],
         extra_objects=[__CANTERA_OBJ],
         depends=[__CANTERA_DEP],
+        language='c++11',
     ),
 ]
 
@@ -57,5 +58,5 @@ setup(
     author_email='ischoegl@lsu.edu',
     license='MIT',
     packages=find_packages(),
-    install_requires=['cantera>=2.4.0'],
+    install_requires=['cantera>2.5.1'],
     ext_modules=cythonize(extensions))
