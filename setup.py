@@ -3,6 +3,7 @@ from sys import platform
 import glob
 import pkg_resources
 import os
+from pathlib import Path
 import numpy as np
 from setuptools import setup, Extension, find_packages
 from sysconfig import get_paths
@@ -16,10 +17,17 @@ __INCLUDE = (os.sep).join(__INCLUDE)
 
 # cantera library
 if platform == "win32":
-    __CANTERA_OBJ = pkg_resources.resource_filename('cantera', '_cantera.*lib')
+    __CANTERA_OBJ = pkg_resources.resource_filename("cantera", "cantera.lib")
+    __CANTERA_OBJ = Path(__CANTERA_OBJ).parents[3] / "Library" / "lib" / "cantera.lib"
+    if not __CANTERA_OBJ.is_file:
+        raise Exception("Cannot locate Cantera installation")
+    __CANTERA_OBJ = str(__CANTERA_OBJ)
+
+    __INCLUDE = Path(__INCLUDE) / "Library" / "include"
+    __INCLUDE = str(__INCLUDE)
 else:
     __CANTERA_OBJ = pkg_resources.resource_filename('cantera', '_cantera.*so')
-__CANTERA_OBJ = glob.glob(__CANTERA_OBJ)[0]
+    __CANTERA_OBJ = glob.glob(__CANTERA_OBJ)[0]
 
 __CANTERA_DEP = pkg_resources.resource_filename('cantera', 'interrupts.py')
 
