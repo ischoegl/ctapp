@@ -17,19 +17,29 @@ __INCLUDE = (os.sep).join(__INCLUDE)
 
 # cantera library
 if platform == "win32":
-    __CANTERA_OBJ = pkg_resources.resource_filename("cantera", "cantera.lib")
-    __CANTERA_OBJ = Path(__CANTERA_OBJ).parents[3] / "Library" / "lib" / "cantera.lib"
+    __PYCANTERA_OBJ = pkg_resources.resource_filename("cantera", "_cantera*.pyd")
+    __PYCANTERA_OBJ = glob.glob(__PYCANTERA_OBJ)[0]
+
+    __CANTERA_OBJ = Path(__PYCANTERA_OBJ).parents[3] / "Library" / "lib" / "cantera.lib"
     if not __CANTERA_OBJ.is_file:
         raise Exception("Cannot locate Cantera installation")
-    __CANTERA_OBJ = str(__CANTERA_OBJ)
+    __YAML_OBJ = __CANTERA_OBJ.parent / "yaml-cpp.lib"
+    if not __YAML_OBJ.is_file:
+        raise Exception("Cannot locate yaml-cpp installation")
+    __EXTRA_OBJ = [str(__CANTERA_OBJ), str(__YAML_OBJ)]
 
     __INCLUDE = Path(__INCLUDE) / "Library" / "include"
     __INCLUDE = str(__INCLUDE)
+
+    __CANTERA_DEP = pkg_resources.resource_filename('cantera', 'interrupts.py')
+    __DEPENDS = [__CANTERA_DEP] # str(__PYCANTERA_OBJ)
 else:
     __CANTERA_OBJ = pkg_resources.resource_filename('cantera', '_cantera.*so')
     __CANTERA_OBJ = glob.glob(__CANTERA_OBJ)[0]
+    __EXTRA_OBJ = [str(__CANTERA_OBJ)]
 
-__CANTERA_DEP = pkg_resources.resource_filename('cantera', 'interrupts.py')
+    __CANTERA_DEP = pkg_resources.resource_filename('cantera', 'interrupts.py')
+    __DEPENDS = [__CANTERA_DEP]
 
 
 def readme():
@@ -43,8 +53,8 @@ extensions = [
         ["ctapp/_ctapp.pyx",
          "ctapp/NewFlow.cpp"],
         include_dirs=[np.get_include(), __INCLUDE],
-        extra_objects=[__CANTERA_OBJ],
-        depends=[__CANTERA_DEP],
+        extra_objects=__EXTRA_OBJ,
+        depends=__DEPENDS,
         language='c++11',
     ),
 ]
