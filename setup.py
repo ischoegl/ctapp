@@ -14,7 +14,7 @@ Options.language_level = 3
 __INCLUDE = get_paths()['include'].split(os.sep)[:-1]
 __INCLUDE = (os.sep).join(__INCLUDE)
 
-# camera library
+# cantera library
 if platform == "win32":
     __CANTERA_OBJ = pkg_resources.resource_filename('cantera', '_cantera.*lib')
 else:
@@ -58,5 +58,5 @@ setup(
     author_email='ischoegl@lsu.edu',
     license='MIT',
     packages=find_packages(),
-    install_requires=['cantera>2.5.1'],
+    install_requires=['cantera>=2.6.0a1'],
     ext_modules=cythonize(extensions))
