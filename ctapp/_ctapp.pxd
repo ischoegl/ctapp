@@ -1,5 +1,7 @@
 # @file _ctapp.pxd
 
+from cpython.ref cimport PyObject
+
 import cantera as ct
 cimport cantera as ct
 
