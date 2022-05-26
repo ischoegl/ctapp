@@ -9,7 +9,7 @@ This example adds new C++ and cython cdef'd classes (illustrated using clones of
 __Notes:__
  * the package depends on `cantera` and `libcantera-devel`, both of which
 are now available as conda packages.
- * the current version assumes Cantera >= 2.6.0a1
+ * the current version assumes Cantera >= 2.6.0
  * at the moment, the package requires a Linux installation
 
 ## Installation
@@ -21,15 +21,14 @@ are now available as conda packages.
 Create and activate a conda environment
 
 ```
-$ conda create -n cantera-dev scons numpy cython ruamel_yaml libboost git ipython
-$ conda activate cantera-dev
+$ conda create -n ctapp -c conda-forge scons numpy cython libboost eigen ruamel.yaml git ipython
+$ conda activate ctapp
 ```
 
 Install cantera and libcantera-devel
 
 ```
-$ conda install -c cantera/label/dev cantera
-$ conda install -c cantera/label/dev libcantera-devel
+$ conda install -c conda-forge cantera libcantera-devel
 ```
 
 ### Install ctapp
