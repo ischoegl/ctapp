@@ -21,7 +21,7 @@ are now available as conda packages.
 Create and activate a conda environment
 
 ```
-$ conda create -n ctapp -c conda-forge scons numpy cython libboost eigen ruamel.yaml git ipython
+$ conda create -n ctapp -c conda-forge scons numpy cython boost-cpp eigen ruamel.yaml git ipython
 $ conda activate ctapp
 ```
 
