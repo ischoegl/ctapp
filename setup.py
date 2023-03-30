@@ -54,8 +54,9 @@ extensions = [
          "ctapp/NewFlow.cpp"],
         include_dirs=[np.get_include(), __INCLUDE],
         extra_objects=__EXTRA_OBJ,
+        extra_compile_args=["-std=c++17"],
         depends=__DEPENDS,
-        language='c++11',
+        language='c++17',
     ),
 ]
 
@@ -77,4 +78,4 @@ setup(
     license='MIT',
     packages=find_packages(),
     install_requires=['cantera>=2.6.0a1'],
-    ext_modules=cythonize(extensions))
+    ext_modules=cythonize(extensions, compiler_directives={'language_level' : "3"}))
