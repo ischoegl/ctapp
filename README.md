@@ -1,22 +1,21 @@
 # ctapp
 
-This is a simple example for a cantera derived application that is compiled
-against cantera source code.
+This is a simple example for a Cantera derived application that is compiled against Cantera source
+code.
 
-This example adds new C++ and cython cdef'd classes (illustrated using clones of
+This example adds Cython versions of new C++ classes (illustrated using clones of
 `IdealGasFlow` and `IdealGasConstPressureReactor` defined in C++).
 
-__Notes:__
- * the package depends on `cantera` and `libcantera-devel`, both of which
-are now available as conda packages.
- * the current version assumes Cantera >= 2.6.0
- * at the moment, the package requires a Linux installation
+> **Warning**
+> This branch compiles against Cantera 3.0.0a5, which is still under development. Conda
+> packages may not be up to date, so compilation from source is recommended.
+
+> **Note**
+> The package is untested on Windows.
 
 ## Installation
 
 ### Set up a conda environment
-
-> Note: headers in `libcantera-devel` may not install correctly on windows.
 
 Create and activate a conda environment
 
@@ -25,11 +24,17 @@ $ conda create -n ctapp -c conda-forge scons numpy cython boost-cpp eigen ruamel
 $ conda activate ctapp
 ```
 
-Install cantera and libcantera-devel
+The package depends on `cantera` and `libcantera-devel`, both of which are available as conda
+packages.
+
+Install `cantera` and `libcantera-devel`
 
 ```
 $ conda install -c conda-forge cantera libcantera-devel
 ```
+
+> **Note**
+> As an alternative, Cantera can be installed from source in the same environment.
 
 ### Install ctapp
 
@@ -68,15 +73,16 @@ $ python
 ```
 
 Check that everything runs (the shell script `get_examples.sh` downloads and
-modifies stock cantera examples)
+modifies stock cantera examples). Utilities `wget` and `sed` need to be installed.
 
 ```
 $ cd examples
 $ sh get_examples.sh
-$ python cloned_flame.py
+$ python new_flame.py
 $ python cloned_reactor.py
 ```
 
-> *Note: On recent conda versions, there may be a mismatch of `libstdc++` between
+> **Note**
+> On recent conda versions, there may be a mismatch of `libstdc++` between
 > the conda environment and the system `g++` (see
 > [workaround](https://github.com/stan-dev/pystan/issues/294#issuecomment-878292636))
