@@ -1,60 +1,48 @@
 #!/usr/bin/env python
 from sys import platform
-import glob
 import pkg_resources
-import os
 from pathlib import Path
 import numpy as np
 from setuptools import setup, Extension, find_packages
 from sysconfig import get_paths
 from Cython.Build import cythonize
-from Cython.Compiler import Options
 
-Options.language_level = 3
+__PATHS = get_paths()
+__INCLUDE = Path(__PATHS["include"]).parent
 
-__INCLUDE = get_paths()['include'].split(os.sep)[:-1]
-__INCLUDE = (os.sep).join(__INCLUDE)
+__CANTERA_LIBS = ["cantera_shared"] # dynamic libraries
 
 # cantera library
 if platform == "win32":
-    __PYCANTERA_OBJ = pkg_resources.resource_filename("cantera", "_cantera*.pyd")
-    __PYCANTERA_OBJ = glob.glob(__PYCANTERA_OBJ)[0]
-
-    __CANTERA_OBJ = Path(__PYCANTERA_OBJ).parents[3] / "Library" / "lib" / "cantera.lib"
-    if not __CANTERA_OBJ.is_file:
-        raise Exception("Cannot locate Cantera installation")
-    __YAML_OBJ = __CANTERA_OBJ.parent / "yaml-cpp.lib"
-    if not __YAML_OBJ.is_file:
-        raise Exception("Cannot locate yaml-cpp installation")
-    __EXTRA_OBJ = [str(__CANTERA_OBJ), str(__YAML_OBJ)]
-
-    __INCLUDE = Path(__INCLUDE) / "Library" / "include"
-    __INCLUDE = str(__INCLUDE)
-
-    __CANTERA_DEP = pkg_resources.resource_filename('cantera', 'interrupts.py')
-    __DEPENDS = [__CANTERA_DEP] # str(__PYCANTERA_OBJ)
+    __CANTERA_LIBS = [f"{lib}.lib" for lib in __CANTERA_LIBS]
+    extra_comp_args = ["/EHsc /std:c++17"]
+    __CONDA = __INCLUDE / "Library"
+    extra_link_args = [f"/LIBPATH:{__CONDA / 'lib'}"]
 else:
-    __CANTERA_OBJ = pkg_resources.resource_filename('cantera', '_cantera.*so')
-    __CANTERA_OBJ = glob.glob(__CANTERA_OBJ)[0]
-    __EXTRA_OBJ = [str(__CANTERA_OBJ)]
+    __CANTERA_LIBS = [f"-l{lib}" for lib in __CANTERA_LIBS]
+    extra_comp_args = ["-std=c++17"]
+    __CONDA = __INCLUDE.parent / "lib"
+    extra_link_args = []
+if platform == "darwin":
+    extra_link_args.extend(["-framework", "Accelerate"])
+extra_comp_args.append("-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION")
 
-    __CANTERA_DEP = pkg_resources.resource_filename('cantera', 'interrupts.py')
-    __DEPENDS = [__CANTERA_DEP]
-
+__CANTERA_DEP = pkg_resources.resource_filename('cantera', 'interrupts.py')
+__DEPENDS = [__CANTERA_DEP]
 
 def readme():
     with open('README.md') as f:
         return f.read()
-
 
 extensions = [
     Extension(
         "ctapp._ctapp",
         ["ctapp/_ctapp.pyx",
          "ctapp/NewFlow.cpp"],
-        include_dirs=[np.get_include(), __INCLUDE],
-        extra_objects=__EXTRA_OBJ,
-        extra_compile_args=["-std=c++17"],
+        include_dirs=[np.get_include(), str(__INCLUDE)],
+        extra_objects=__CANTERA_LIBS,
+        extra_compile_args=extra_comp_args,
+        extra_link_args=extra_link_args,
         depends=__DEPENDS,
         language='c++17',
     ),
