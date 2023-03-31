@@ -6,14 +6,20 @@
 #define CT_NEWFLOW_H
 
 #include "cantera/oneD/StFlow.h"
+#include "cantera/oneD/DomainFactory.h"
 
 using namespace Cantera;
 
 namespace CanteraApp {
 
-//------------------------------------------
-//   constants
-//------------------------------------------
+class ClonedFlow : public StFlow {
+public:
+    ClonedFlow(shared_ptr<Solution> sol, const std::string& id="", size_t points=1)
+        : StFlow(sol, id, points) {}
+
+    virtual std::string type() const { return "cloned-flow"; }
+    // inherit everything else
+};
 
 class NewFlow : public StFlow {
 public:
@@ -21,13 +27,14 @@ public:
      */
 
     //! Create a new flow domain.
-    //! @param ph Object representing the gas phase. This object will be used
-    //!     to evaluate all thermodynamic, kinetic, and transport properties.
-    //! @param nsp Number of species.
-    //! @param nextra number of extra equations
-    //! @param points Initial number of grid points
-    NewFlow(IdealGasPhase *ph = 0, size_t nsp = 1, size_t nextra = 0,
-            size_t points = 1);
+    //! @param sol  Solution object used to evaluate all thermodynamic, kinetic, and
+    //!     transport properties
+    //! @param id  name of flow domain
+    //! @param points  initial number of grid points
+    NewFlow(shared_ptr<Solution> sol, const std::string& id="", size_t points=1);
+
+    virtual std::string type() const { return "new-flow"; }
+
 
     virtual std::string componentName(size_t n) const;
     virtual size_t componentIndex(const std::string &name) const;
@@ -38,8 +45,19 @@ protected:
     virtual void evalResidual(double *x, double *rsd, int *diag, double rdt,
                               size_t jmin, size_t jmax);
 
-    size_t m_nextra;
+    size_t m_nextra = 1;
 };
+
+inline void registerDomains() {
+    DomainFactory::factory()->reg("cloned-flow",
+        [](shared_ptr<Solution> solution, const string& id) {
+            return new ClonedFlow(solution, id);
+        });
+    DomainFactory::factory()->reg("new-flow",
+        [](shared_ptr<Solution> solution, const string& id) {
+            return new NewFlow(solution, id);
+        });
+}
 
 } // namespace CanteraApp
 
