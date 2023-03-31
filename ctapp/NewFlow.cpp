@@ -10,8 +10,8 @@ using namespace Cantera;
 
 namespace CanteraApp {
 
-NewFlow::NewFlow(IdealGasPhase *ph, size_t nsp, size_t nextra, size_t points)
-    : StFlow(ph, nsp, points), m_nextra(nextra)
+NewFlow::NewFlow(shared_ptr<Solution> sol, const std::string& id, size_t points)
+    : StFlow(sol, id, points)
 {
     // update number of equations and resize state vectors
     m_nv += m_nextra;

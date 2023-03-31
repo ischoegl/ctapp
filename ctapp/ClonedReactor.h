@@ -16,13 +16,15 @@ using namespace Cantera;
 namespace CanteraApp {
 
 class ClonedReactor : public IdealGasConstPressureReactor {
-    virtual std::string type() const { return "ClonedReactor"; }
+public:
+    virtual std::string type() const { return "cloned-reactor"; }
     // inherit everything else
 };
 
-inline void registerClonedReactor() {
-      ReactorFactory::factory()->reg("ClonedReactor",
-                                     []() { return new ClonedReactor(); });
+inline void registerReactors() {
+    ReactorFactory::factory()->reg("cloned-reactor", []() {
+        return new ClonedReactor();
+    });
 }
 
 } // namespace CanteraApp
