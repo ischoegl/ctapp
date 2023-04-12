@@ -12,15 +12,6 @@ using namespace Cantera;
 
 namespace CanteraApp {
 
-class ClonedFlow : public StFlow {
-public:
-    ClonedFlow(shared_ptr<Solution> sol, const std::string& id="", size_t points=1)
-        : StFlow(sol, id, points) {}
-
-    virtual std::string type() const { return "cloned-flow"; }
-    // inherit everything else
-};
-
 class NewFlow : public StFlow {
 public:
     /** This class adds extra equations at the end
@@ -48,12 +39,6 @@ protected:
 };
 
 inline void registerDomains() {
-    DomainFactory::factory()->reg("cloned-flow",
-        [](shared_ptr<Solution> solution, const string& id) {
-            StFlow* ret = new ClonedFlow(solution, id);
-            ret->setFreeFlow();
-            return ret;
-        });
     DomainFactory::factory()->reg("new-flow",
         [](shared_ptr<Solution> solution, const string& id) {
             StFlow* ret = new NewFlow(solution, id);

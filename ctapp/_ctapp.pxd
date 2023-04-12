@@ -12,10 +12,6 @@ cdef extern from "cantera/cython/funcWrapper.h":
 cdef extern from "NewFlow.h" namespace "CanteraApp":
     cdef void registerDomains() except +translate_exception
 
-# new flow class defined via cython
-cdef class ClonedFlow(ct._FlowBase):
-    pass
-
 # cython portion
 cdef class NewFlow(ct._FlowBase):
     pass
