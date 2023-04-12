@@ -35,7 +35,6 @@ public:
 
     virtual std::string type() const { return "new-flow"; }
 
-
     virtual std::string componentName(size_t n) const;
     virtual size_t componentIndex(const std::string &name) const;
 
@@ -51,11 +50,15 @@ protected:
 inline void registerDomains() {
     DomainFactory::factory()->reg("cloned-flow",
         [](shared_ptr<Solution> solution, const string& id) {
-            return new ClonedFlow(solution, id);
+            StFlow* ret = new ClonedFlow(solution, id);
+            ret->setFreeFlow();
+            return ret;
         });
     DomainFactory::factory()->reg("new-flow",
         [](shared_ptr<Solution> solution, const string& id) {
-            return new NewFlow(solution, id);
+            StFlow* ret = new NewFlow(solution, id);
+            ret->setFreeFlow();
+            return ret;
         });
 }
 

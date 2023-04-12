@@ -1,6 +1,6 @@
 //! @file NewFlow.cpp
 
-// the code below builds on StFlow.cpp (Cantera 2.6.1)
+// the code below builds on StFlow.cpp (Cantera 3.0.0a5)
 
 #include "NewFlow.h"
 
@@ -69,18 +69,12 @@ string NewFlow::componentName(size_t n) const
 
 size_t NewFlow::componentIndex(const string &name) const
 {
-    size_t idx;
-    idx = StFlow::componentIndex(name);
-    if (idx == npos) {
-        for (size_t n = c_offset_Y + m_nsp; n < m_nv; n++) {
-            if (componentName(n) == name) {
-                return n;
-            }
+    for (size_t n = c_offset_Y + m_nsp; n < m_nv; n++) {
+        if (componentName(n) == name) {
+            return n;
         }
-        return npos;
-    } else {
-        return idx;
     }
+    return StFlow::componentIndex(name);
 }
 
 } // namespace CanteraApp
