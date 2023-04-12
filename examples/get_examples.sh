@@ -1,15 +1,10 @@
 # get two examples
 wget https://raw.githubusercontent.com/Cantera/cantera/main/samples/python/onedim/burner_flame.py
 
-mv burner_flame.py cloned_flame.py
-sed -i 's/burner_flame/cloned_flame/g' cloned_flame.py
-sed -i 's/ct.BurnerFlame/ctapp.ClonedFlame/g' cloned_flame.py
-sed -i 's/import cantera as ct/import cantera as ct\nimport ctapp/g' cloned_flame.py
-
-cp cloned_flame.py new_flame.py
-sed -i 's/cloned_flame/new_flame/g' new_flame.py
-sed -i 's/ctapp.ClonedFlame/ctapp.NewFlame/g' new_flame.py
-sed -i 's/width=width/width=width, nextra=5/g' new_flame.py
+mv burner_flame.py new_flame.py
+sed -i 's/burner_flame/new_flame/g' new_flame.py
+sed -i 's/ct.BurnerFlame/ctapp.NewFlame/g' new_flame.py
+sed -i 's/import cantera as ct/import cantera as ct\nimport ctapp/g' new_flame.py
 
 wget https://raw.githubusercontent.com/Cantera/cantera/main/samples/python/reactors/reactor1.py
 
