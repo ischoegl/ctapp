@@ -19,7 +19,6 @@ class NewFlame(ct.BurnerFlame):
         self.outlet = ct.Outlet1D(name='outlet', phase=gas)
         if not hasattr(self, 'flame'):
             self.flame = NewFlow(gas, name='flame', nextra=nextra)
-            self.flame.set_axisymmetric_flow()
 
         if width is not None:
             grid = np.array([0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0]) * width
