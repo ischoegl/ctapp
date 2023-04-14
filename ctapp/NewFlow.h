@@ -12,10 +12,9 @@ using namespace Cantera;
 
 namespace CanteraApp {
 
+/** This class inherits from StFlow but adds extra equations at the end. */
 class NewFlow : public StFlow {
 public:
-    /** This class adds extra equations at the end
-     */
 
     //! Create a new flow domain.
     //! @param sol  Solution object used to evaluate all thermodynamic, kinetic, and
@@ -42,7 +41,7 @@ inline void registerDomains() {
     DomainFactory::factory()->reg("new-flow",
         [](shared_ptr<Solution> solution, const string& id) {
             StFlow* ret = new NewFlow(solution, id);
-            ret->setFreeFlow();
+            ret->setUnstrainedFlow();
             return ret;
         });
 }
