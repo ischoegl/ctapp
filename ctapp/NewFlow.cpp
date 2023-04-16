@@ -1,6 +1,9 @@
 //! @file NewFlow.cpp
 
-// the code below builds on StFlow.cpp (Cantera 3.0.0a5)
+// This file is part of ctapp. See LICENSE file in the top-level directory
+// for license and copyright information.
+
+// the code extends StFlow.cpp (Cantera 3.0.0a5)
 
 #include "NewFlow.h"
 

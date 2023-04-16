@@ -1,9 +1,7 @@
 //! @file ClonedReactor.h
 
-// This file is part of the add-on package ctapp.
-// See License.txt in the top-level directory
-
-// the code below builds on StFlow.cpp (Cantera 2.6.1)
+// This file is part of ctapp. See LICENSE file in the top-level directory
+// for license and copyright information.
 
 #ifndef CT_CLONEDREACTOR_H
 #define CT_CLONEDREACTOR_H

@@ -1,4 +1,7 @@
-#!/usr/bin/env python
+""" Module defining NewFlame (replacement of BurnerFlame) """
+
+# This file is part of ctapp. See LICENSE file in the top-level directory
+# for license and copyright information.
 
 import cantera as ct
 import numpy as np
