@@ -34,6 +34,10 @@ def readme():
     with open('README.md') as f:
         return f.read()
 
+with Path("ctapp/_version.py").open() as version_file:
+    exec(version_file.read())
+
+
 extensions = [
     Extension(
         "ctapp._ctapp",
@@ -50,6 +54,7 @@ extensions = [
 
 setup(
     name="ctapp",
+    version=__version__,
     description='Example for compilation of custom classes against stock cantera',
     long_description=readme(),
     classifiers=[
@@ -61,9 +66,9 @@ setup(
     ],
     keywords='cantera',
     url='https://github.com/ischoegl/ctapp.git',
-    author='Ingmar Schoegl',
+    author=__author__,
     author_email='ischoegl@lsu.edu',
     license='MIT',
     packages=find_packages(),
-    install_requires=['cantera>=2.6.0a1'],
+    install_requires=['cantera>=3.0.0a5'],
     ext_modules=cythonize(extensions, compiler_directives={'language_level' : "3"}))
