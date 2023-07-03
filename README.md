@@ -1,21 +1,23 @@
 # ctapp
 
-This is a simple example for a Cantera derived application that is compiled against Cantera source
-code.
+This is a simple example for a Cantera derived application that is compiled against
+Cantera source code.
 
-This example adds Cython versions of new C++ classes (illustrated using clones of
-`IdealGasFlow` and `IdealGasConstPressureReactor` defined in C++).
+This example adds Cython versions of new C++ classes, which are accessed from the
+Python package `ctapp`:
 
-> **Warning**
-> This branch compiles against Cantera 3.0.0ab1, which is still under development. Conda
-> packages may not be up to date, so compilation from source is recommended.
-
-> **Note**
-> The package is untested on Windows.
+* `Sqrt1` functor (new C++ `Func1` class) ... Python: `ctapp.ClonedFunc1.cxx_functor("sqrt")`
+* `ClonedReactor` (based on C++ `IdealGasConstPressureReactor`) ... Python: `ctapp.ClonedReactor`
+* `NewFlow` (based on C++ `StFlow`) ... Python: `ctapp.NewFlame`
 
 ## Installation
 
 ### Set up a conda environment
+
+> **Warning**
+> This branch compiles against Cantera 3.0.0b1, which is still under development. Conda
+> packages may not be up to date, so compilation from source is recommended.
+
 
 Create and activate a conda environment
 
@@ -24,8 +26,8 @@ $ conda create -n ctapp -c conda-forge scons numpy cython boost-cpp eigen ruamel
 $ conda activate ctapp
 ```
 
-The package depends on `cantera` and `libcantera-devel`, both of which are available as conda
-packages.
+The package depends on `cantera` and `libcantera-devel`, both of which are available as
+conda packages.
 
 Install `cantera` and `libcantera-devel`
 
@@ -72,8 +74,15 @@ $ python
 >>> dir(ctapp)
 ```
 
-Check that everything runs (the shell script `get_examples.sh` downloads and
-modifies stock cantera examples). Utilities `wget` and `sed` need to be installed.
+Run the functor example:
+```
+$ cd examples
+$ python new_functor.py
+```
+
+**Linux/macOS only:** Run modified Cantera samples (the shell script `get_examples.sh`
+downloads and modifies stock Cantera examples). Utilities `wget` and `sed` need to be
+installed.
 
 ```
 $ cd examples
@@ -81,8 +90,3 @@ $ sh get_examples.sh
 $ python new_flame.py
 $ python cloned_reactor.py
 ```
-
-> **Note**
-> On recent conda versions, there may be a mismatch of `libstdc++` between
-> the conda environment and the system `g++` (see
-> [workaround](https://github.com/stan-dev/pystan/issues/294#issuecomment-878292636))
