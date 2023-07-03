@@ -8,27 +8,28 @@ from sysconfig import get_paths
 from Cython.Build import cythonize
 
 __PATHS = get_paths()
-__INCLUDE = Path(__PATHS["include"]).parent
+__ROOT = Path(__PATHS["include"])
+if __ROOT.name.lower() != "include":
+    __ROOT = __ROOT.parent # strip python subdirectory (if present)
+__ROOT = __ROOT.parent
 
-__CANTERA_LIBS = ["cantera_shared"] # dynamic libraries
+__CANTERA_LIBS = ["cantera_shared"] # shared libraries
 
-# cantera library
 if platform == "win32":
     __CANTERA_LIBS = [f"{lib}.lib" for lib in __CANTERA_LIBS]
-    extra_comp_args = ["/EHsc /std:c++17"]
-    __CONDA = __INCLUDE / "Library"
-    extra_link_args = [f"/LIBPATH:{__CONDA / 'lib'}"]
+    __INCLUDE = __ROOT / "Library" / "include"
+    extra_comp_args = ["/std:c++17"]
+    extra_link_args = [f"/LIBPATH:{__ROOT / 'Library' / 'lib'}"]
 else:
     __CANTERA_LIBS = [f"-l{lib}" for lib in __CANTERA_LIBS]
+    __INCLUDE = __ROOT / "include"
     extra_comp_args = ["-std=c++17"]
-    __CONDA = __INCLUDE.parent / "lib"
     extra_link_args = []
 if platform == "darwin":
     extra_link_args.extend(["-framework", "Accelerate"])
 extra_comp_args.append("-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION")
 
-__CANTERA_DEP = pkg_resources.resource_filename('cantera', 'interrupts.py')
-__DEPENDS = [__CANTERA_DEP]
+__DEPENDS = [pkg_resources.resource_filename('cantera', 'interrupts.py')]
 
 def readme():
     with open('README.md') as f:
