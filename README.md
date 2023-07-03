@@ -7,7 +7,7 @@ This example adds Cython versions of new C++ classes (illustrated using clones o
 `IdealGasFlow` and `IdealGasConstPressureReactor` defined in C++).
 
 > **Warning**
-> This branch compiles against Cantera 3.0.0a5, which is still under development. Conda
+> This branch compiles against Cantera 3.0.0ab1, which is still under development. Conda
 > packages may not be up to date, so compilation from source is recommended.
 
 > **Note**
