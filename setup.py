@@ -41,8 +41,11 @@ with Path("ctapp/_version.py").open() as version_file:
 extensions = [
     Extension(
         "ctapp._ctapp",
-        ["ctapp/_ctapp.pyx",
-         "ctapp/NewFlow.cpp"],
+        [
+            "ctapp/_ctapp.pyx",
+            "ctapp/NewFlow.cpp",
+            "ctapp/NewFunc1.cpp"
+        ],
         include_dirs=[np.get_include(), str(__INCLUDE)],
         extra_objects=__CANTERA_LIBS,
         extra_compile_args=extra_comp_args,

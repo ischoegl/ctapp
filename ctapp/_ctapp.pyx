@@ -14,7 +14,8 @@ class CanteraError(RuntimeError):
 
 cdef public PyObject* pyCanteraError = <PyObject*>CanteraError
 
-__all__ = ['ClonedReactor', 'NewFlow']
+__all__ = ['ClonedReactor', 'NewFlow', 'ClonedFunc1']
 
 include "clonedflow.pyx"
 include "clonedreactor.pyx"
+include "functors.pyx"
