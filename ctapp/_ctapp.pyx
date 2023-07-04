@@ -4,17 +4,11 @@
 # This file is part of ctapp. See LICENSE file in the top-level directory
 # for license and copyright information.
 
-import cantera as ct
-cimport cantera as ct
-
-from cantera import interrupts
-
-class CanteraError(RuntimeError):
-    pass
+from cantera import interrupts, CanteraError
 
 cdef public PyObject* pyCanteraError = <PyObject*>CanteraError
 
-__all__ = ['ClonedReactor', 'NewFlow', 'ClonedFunc1']
+__all__ = ['ClonedReactor', 'NewFlow']
 
 include "clonedflow.pyx"
 include "clonedreactor.pyx"
