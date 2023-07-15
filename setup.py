@@ -13,7 +13,7 @@ if __ROOT.name.lower() != "include":
     __ROOT = __ROOT.parent # strip python subdirectory (if present)
 __ROOT = __ROOT.parent
 
-__CANTERA_LIBS = ["cantera_shared"] # shared libraries
+__CANTERA_LIBS = ["cantera"] # shared libraries
 
 if platform == "win32":
     __CANTERA_LIBS = [f"{lib}.lib" for lib in __CANTERA_LIBS]
