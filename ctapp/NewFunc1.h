@@ -13,11 +13,16 @@ using namespace Cantera;
 
 namespace CanteraApp {
 
+/**
+ * @defgroup functors New Functors
+ * Functors build on top of %Cantera's \c Func1 class.
+ */
 
 //! Implements the \c sqrt() function.
 /*!
  * The functor class with type \c "sqrt" returns \f$ f(x) = \sqrt(a x) \f$.
  * @param a  Factor (default=1.0)
+ * @ingroup functors
  */
 class Sqrt1 : public Func1
 {
