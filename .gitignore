@@ -110,3 +110,5 @@ venv.bak/
 # miscellaneous
 *~
 *#
+.DS_Store
+.vscode/
