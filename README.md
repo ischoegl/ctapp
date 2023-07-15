@@ -22,7 +22,7 @@ Python package `ctapp`:
 Create and activate a conda environment
 
 ```
-$ conda create -n ctapp -c conda-forge scons numpy cython boost-cpp eigen ruamel.yaml git ipython
+$ conda create -n ctapp -c main scons numpy cython boost-cpp eigen ruamel.yaml git ipython
 $ conda activate ctapp
 ```
 
@@ -32,7 +32,7 @@ conda packages.
 Install `cantera` and `libcantera-devel`
 
 ```
-$ conda install -c conda-forge cantera libcantera-devel
+$ conda install -c cantera/label/dev cantera libcantera-devel
 ```
 
 > **Note**
