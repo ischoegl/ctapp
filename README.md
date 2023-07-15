@@ -90,3 +90,19 @@ $ sh get_examples.sh
 $ python new_flame.py
 $ python cloned_reactor.py
 ```
+
+## Building Documentation
+
+Build `doxygen` documentation using `doxygen-awesome-css` styling
+(see [instructions](https://github.com/jothepro/doxygen-awesome-css#installation)):
+
+```
+$ doxygen source/doxygen/Doxyfile
+```
+
+Build `Sphinx` documentation (requires `sphinx-autodoc-typehints`,
+`pydata-sphinx-theme`, `breathe`):
+
+```
+$ make html
+```
