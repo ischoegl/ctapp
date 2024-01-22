@@ -6,7 +6,7 @@ Cantera source code.
 This example adds Cython versions of new C++ classes, which are accessed from the
 Python package `ctapp`:
 
-* `Sqrt1` functor (new C++ `Func1` class) ... Python: `ctapp.ClonedFunc1.cxx_functor("sqrt")`
+* `Sqrt1` functor (new C++ `Func1` class) ... Python: `ct.Func1.cxx_functor("sqrt")`
 * `ClonedReactor` (based on C++ `IdealGasConstPressureReactor`) ... Python: `ctapp.ClonedReactor`
 * `NewFlow` (based on C++ `StFlow`) ... Python: `ctapp.NewFlame`
 

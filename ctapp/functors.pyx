@@ -5,7 +5,3 @@ cdef __register_functors():
     registerFunctors()
 
 __register_functors()
-
-
-cdef class ClonedFunc1(ct.Func1):
-    pass
